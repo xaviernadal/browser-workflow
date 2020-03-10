@@ -1,5 +1,5 @@
 # browser-workflow
-Save the tabs you are currently using, as a pack. Open them when you need.
+Save the tabs you are currently using, as a pack. Open them when you need it.
 
 **Not tested in other devices. !**
 
@@ -22,6 +22,7 @@ test (opens all the tabs you saved under this name)
 Every save overwrites the URLs written before.
 
 Creates a file for every workspace.
+
  
 ### TODO 
 [ ] Add arguments: (help, list, etc.)

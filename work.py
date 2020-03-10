@@ -54,8 +54,6 @@ def copyUrls():
     while duplicate_count < MAX_DUPLICATE:
         pyautogui.hotkey('alt', 'd')
         sleep(SLEEP_TIME)
-        pyautogui.hotkey('ctrl', 'a')  # Not necessary
-        sleep(SLEEP_TIME)
         pyautogui.hotkey('ctrl', 'c')
         sleep(SLEEP_TIME)
         link = Tk().clipboard_get()

@@ -7,7 +7,7 @@ Save the tabs you are currently using, as a pack. Open them when you need.
 - save < workspace > : Saves the urls of the tabs opened in your browser under the name < workspace >.
 - < workspace >: Opens all the tabs saved under this name.
   
-The list shows all the workspaces with designed Urls.
+The list shows all the workspaces with designed URLs.
   
 ### Example
 chmod +x work.py

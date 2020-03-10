@@ -11,7 +11,9 @@ from time import sleep
 SLEEP_TIME = 0.1
 MAX_DUPLICATE = 2
 
+#TODO: optional, alias ~/.bashrc + add path
 path = ""
+
 #TODO: Automate dictionary and workspace names    
 work={"xarxes": path + "xarxesLinks.txt","flutter":path +  "flutterLinks.txt", "ml":path +  "mlLinks.txt", "test":path + "testLinks.txt"}
 

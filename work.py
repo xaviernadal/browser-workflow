@@ -11,8 +11,6 @@ from time import sleep
 SLEEP_TIME = 0.1
 MAX_DUPLICATE = 2
 
-path = ""
-
 work = {}
 
 
@@ -20,10 +18,12 @@ def prepareWork():
     subjectList = open('workspaces.txt', 'r')
     print("List:")
     for key in subjectList:
+        key = key.strip()
         subjectFile = key + "Links.txt"
 
         work.update({key: subjectFile})
         print("- " + key)
+    print(work)
     if bool(work) == False:
         print("You need to save a workspace first!")
 

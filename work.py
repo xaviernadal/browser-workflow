@@ -34,6 +34,24 @@ def prepareWork():  # lista los archivos que tenemos en Database
         return
     print("You need to save a workspace first!")
 
+def readInput():
+    search_filename = input().split()
+    first = search_filename[0]
+    database = Database()
+    database_work = database.get_list_workspaces()
+    if first == "save":
+        filename = search_filename[1]
+        if not filename in database_work:
+            line = "\nCreating workspace named {}...\n"
+            print(line.format(filename))
+            data = ContactDataBase(filename)
+        urls = copyUrls()
+        data.modify(urls)
+    elif not first in database_work:
+        line = "\nThere's no filename named {}\n\nFor more info, write 'work -h'"
+        print(line.format(first))
+    else:
+        openWork(first)
 
 def copyUrls():
     pyautogui.hotkey('winleft', '1')
@@ -70,24 +88,6 @@ def openWork(filename):
     sys.exit()
 
 
-def readInput():
-    search_filename = input().split()
-    first = search_filename[0]
-    database = Database()
-    database_work = database.get_list_workspaces()
-    if first == "save":
-        filename = search_filename[1]
-        if not filename in database_work:
-            line = "\nCreating workspace named {}...\n"
-            print(line.format(filename))
-            data = ContactDataBase(filename)
-        urls = copyUrls()
-        data.modify(urls)
-    elif not first in database_work:
-        line = "\nThere's no filename named {}\n\nFor more info, write 'work -h'"
-        print(line.format(first))
-    else:
-        openWork(first)
 
 
 def main():

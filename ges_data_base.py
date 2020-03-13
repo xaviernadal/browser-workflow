@@ -30,15 +30,6 @@ class ContactDataBase():
                 return tuple(file.read().split("\n"))[:-1]
         return tuple("")
     
-    def get_list_workspaces_generator(self):
-        return (i for i in os.listdir(src))
-
-    def get_list_workspaces(self):
-        return set([i for i in os.listdir(src)])
-    
-
-
-
     
                 
 

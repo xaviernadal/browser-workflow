@@ -17,7 +17,9 @@ MAX_DUPLICATE = 2
 src = "Database/"
 
 
-class Database(object):
+class Database():
+    def __init__(self):
+        self.workspace = None
 
     def get_list_workspaces_generator(self):
         return (i for i in os.listdir(src))
@@ -26,32 +28,37 @@ class Database(object):
         return set([i for i in self.get_list_workspaces_generator()])
 
 
-def prepareWork():  # lista los archivos que tenemos en Database
-    database = Database()
-    database_work = database.get_list_workspaces_generator()
-    for workspase in database_work:
+def prepareWork(database_works):  # lista los archivos que tenemos en Database
+    for workspase in database_works:
         print(workspase)
         return
     print("You need to save a workspace first!")
 
-def readInput():
+
+def readInput(database_works, database):
     search_filename = input().split()
     first = search_filename[0]
-    database = Database()
-    database_work = database.get_list_workspaces()
     if first == "save":
-        filename = search_filename[1]
-        if not filename in database_work:
-            line = "\nCreating workspace named {}...\n"
-            print(line.format(filename))
-            data = ContactDataBase(filename)
-        urls = copyUrls()
-        data.modify(urls)
-    elif not first in database_work:
+        save(search_filename, database_works, database)
+    elif not first in database_works:
         line = "\nThere's no filename named {}\n\nFor more info, write 'work -h'"
         print(line.format(first))
     else:
-        openWork(first)
+        database.workspace = ContactDataBase(first)
+        openWork(database)
+
+
+
+def save(search_filename, database_work, database):
+    filename = search_filename[1]
+    database.workspace = ContactDataBase(filename)
+    if not filename in database_work:
+        line = "\nCreating workspace named {}...\n"
+        print(line.format(filename))
+    urls = copyUrls()
+    database.workspace.modify(urls)
+    
+
 
 def copyUrls():
     pyautogui.hotkey('winleft', '1')
@@ -79,21 +86,21 @@ def copyUrls():
     return links
 
 
-def openWork(filename):
-    data = ContactDataBase(filename)
-    urls = data.read_links()
+def openWork(database):
+    urls = database.workspace.read_links()
     for line in urls:
         webbrowser.open(line, new=0, autoraise=True)
     sleep(5)
     sys.exit()
 
 
-
-
 def main():
     print("Hello! What do you want to work on?")
-    prepareWork()
-    readInput()
+    database = Database()
+    database_works = database.get_list_workspaces()
+    prepareWork(database_works)
+    readInput(database_works, database)
+    
 
 
 if __name__ == "__main__":
